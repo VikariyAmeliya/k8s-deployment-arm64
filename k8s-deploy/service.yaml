@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service #абстракция кубера в данном случае для доступа к поду
+metadata:
+  name: metrics-collector-service 
+spec:
+  selector: #определяет какие поды будут включены в Service 
+    app: metrics-collector
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000

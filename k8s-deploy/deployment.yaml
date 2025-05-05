@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment #обьект куба, который управляет подами
+metadata:
+  name: metrics-collector
+spec:
+  replicas: 2 #кол-во одинаковых подов
+  selector:
+    matchLabels:
+      app: metrics-collector #сам под
+  template: #шаблон пода 
+    metadata:
+      labels:
+        app: metrics-collector
+    spec:
+      containers: 
+      - name: metrics-collector
+        image: metrics-collector:latest #наш Docker-образ
+        ports:
+        - containerPort: 8000
