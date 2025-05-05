@@ -32,5 +32,5 @@
   `kubectl apply -f deployment.yaml`  
   `kubectl apply -f service.yaml`
 
-### 6) Пробросим порт 8000 для открытия странички с метриками по адресу `http://localhost:8000`:
+### 6) Пробросим порт 8000 для открытия странички с метриками по адресу `http://localhost:8000`
 - **a)** `kubectl port-forward svc/metrics-collector-service 8000:8000` (`svc` в данном случае указывает на kind — `service`)
