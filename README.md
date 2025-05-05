@@ -27,7 +27,7 @@
 - **a)** Собираем: `docker build -t metrics-collector .` (`-t` — это тег образа, `.` в конце указывает на текущую папку; если путь до Dockerfile не в этой папке, укажите полный путь до него)
 - **b)** Запускаем: `docker run -t metrics-collector`
 
-### 5) Развертываем 2 kind сущности в k8s (создаем Deployment и Service YAML-файлы):
+### 5) Развернем 2 kind сущности в k8s (создаем Deployment и Service YAML-файлы):
 - **a)** Применяем конфигурации командами:  
   `kubectl apply -f deployment.yaml`  
   `kubectl apply -f service.yaml`
