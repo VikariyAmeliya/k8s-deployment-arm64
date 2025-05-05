@@ -1,0 +1,27 @@
+---
+- name: Setup k8s for Docker Desktop
+  hosts: localhost #делаем все на loopback интерфейсе
+  tasks:
+    
+    - name: Install kubectl via Homebrew # в данном случае у меня пакетный менеджер Homebrew
+      homebrew:
+        name: kubectl #название пакета 
+        state: present #версия пакета
+
+    # Установка Helm 
+    - name: Install Helm via Homebrew
+      homebrew:
+        name: helm
+        state: present
+
+    # Добавление репозиториев Helm
+    - name: Add Helm repos
+      command: helm repo add {{ item.name }} {{ item.url }} #запускаем команду внутри пода с помощью Helm
+      loop:
+        - { name: "prometheus-community", url: "https://prometheus-community.github.io/helm-charts" }
+        - { name: "bitnami", url: "https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami" }
+
+    # Создаем namespace для мониторинга
+    - name: Create monitoring namespace
+      command: kubectl create namespace monitoring
+  
